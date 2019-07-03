@@ -34,11 +34,10 @@ public class GenericTransactionStatementProcessor {
     }
 
     public List<Transaction> process(final MultipartFile file) {
-
         Optional<TransactionStatementProcessor> transactionStatementProcessor =
                 DocumentHelper.getFileExtensionFromFileName(file.getOriginalFilename())
                 .map(fileType -> getTransactionStatementProcessorByFileType(fileType))
-                .orElseThrow(() -> new RuntimeException("Unable to process file name"));
+                .orElseThrow(() -> new DocumentTypeNotSupportedException("File name is not correct", ""));
 
         if(transactionStatementProcessor.isPresent()) {
             return transactionStatementProcessor.get().process(file);

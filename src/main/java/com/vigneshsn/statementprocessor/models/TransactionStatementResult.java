@@ -1,23 +1,17 @@
 package com.vigneshsn.statementprocessor.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 import java.util.List;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class TransactionStatementResult implements Serializable {
-
-    public List<Transaction> getDuplicates() {
-        return duplicates;
-    }
-
-    public List<Transaction> getIncorrectBalance() {
-        return incorrectBalance;
-    }
 
     private List<Transaction> duplicates;
     private List<Transaction> incorrectBalance;
-
-    public TransactionStatementResult(List<Transaction> duplicates, List<Transaction> incorrectBalance) {
-        this.duplicates = duplicates;
-        this.incorrectBalance = incorrectBalance;
-    }
 }

@@ -1,14 +1,12 @@
 package com.vigneshsn.statementprocessor;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class TestUtils {
 
-    public static byte[] readCSVFile(final String fileName)  {
+    public static byte[] readFileASBytes(final String fileName)  {
 
         try {
             Path path = Paths.get(TestUtils.class.getClassLoader()

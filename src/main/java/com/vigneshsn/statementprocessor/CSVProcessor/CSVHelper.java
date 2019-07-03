@@ -16,7 +16,8 @@ public class CSVHelper {
         try (Reader fileReader = new InputStreamReader(file.getInputStream())) {
             HeaderColumnNameMappingStrategy mappingStrategy = new HeaderColumnNameMappingStrategy();
             mappingStrategy.setType(type);
-            CsvToBean<T> csvToBean = new CsvToBeanBuilder(fileReader)
+
+            CsvToBean csvToBean = new CsvToBeanBuilder(fileReader)
                     .withType(type)
                     .withMappingStrategy(mappingStrategy)
                     .build();
