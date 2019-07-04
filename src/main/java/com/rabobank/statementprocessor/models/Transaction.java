@@ -5,7 +5,11 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlElement;
 import java.math.BigDecimal;
 
 @Data
@@ -25,7 +29,7 @@ public class Transaction {
     private String iban;
 
     @CsvBindByName(column = "Description")
-    @XmlElement(name = "endBalance")
+    @XmlElement(name = "description")
     private String description;
 
     @CsvBindByName(column = "Start Balance")

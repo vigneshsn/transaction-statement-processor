@@ -20,7 +20,7 @@ public class TransactionStatementProcessController {
         this.transactionStatementProcessor = transactionStatementProcessor;
     }
 
-    @RequestMapping(method = RequestMethod.POST, path = "/process-transaction")
+    @RequestMapping(method = RequestMethod.POST, path = "/process-transaction", produces = "application/json")
     public TransactionStatementResult processTransactionFile(MultipartFile file) {
         List<Transaction> transactionList = this.transactionStatementProcessor.process(file);
         return new TransactionStatementResult(TransactionValidationHelper.getDuplicateTransactions(transactionList),
