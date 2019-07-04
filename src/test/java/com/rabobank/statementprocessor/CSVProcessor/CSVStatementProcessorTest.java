@@ -1,6 +1,7 @@
 package com.rabobank.statementprocessor.CSVProcessor;
 
 import com.rabobank.statementprocessor.TestHelper;
+import com.rabobank.statementprocessor.exceptions.CSVParseException;
 import com.rabobank.statementprocessor.models.Transaction;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,12 +29,12 @@ public class CSVStatementProcessorTest {
         assertTrue("should contain value", transactions.size() > 0);
     }
 
-    @Test
+    @Test(expected = CSVParseException.class)
     public void parsing_invalid_csv_return_empty_list() {
+        byte[] fileContent = TestHelper.readFileASBytes("incorrect_records.csv");
         MockMultipartFile mockMultipartFile =
-                new MockMultipartFile("file", "test.csv", "csv", "invalid".getBytes());
-        List<Transaction> transactions = csvStatementProcessor.process(mockMultipartFile);
-        assertTrue("should return empty list", transactions.size() == 0);
+                new MockMultipartFile("file", "test.csv", "csv", fileContent);
+        csvStatementProcessor.process(mockMultipartFile);
     }
 }
 

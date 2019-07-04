@@ -31,6 +31,7 @@ public class CSVStatementProcessor implements TransactionStatementProcessor {
             Reader fileReader = new InputStreamReader(fileInputStream);
             CsvToBean csvToBean = new CsvToBeanBuilder(fileReader)
                     .withType(Transaction.class)
+                    .withThrowExceptions(true)
                     .withMappingStrategy(mappingStrategy)
                     .build();
             return csvToBean.parse();

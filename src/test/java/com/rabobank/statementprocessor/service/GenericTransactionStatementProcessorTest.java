@@ -4,6 +4,7 @@ import com.rabobank.statementprocessor.CSVProcessor.CSVStatementProcessor;
 import com.rabobank.statementprocessor.TestHelper;
 import com.rabobank.statementprocessor.XMLProcessor.XMLStatementProcessor;
 import com.rabobank.statementprocessor.api.TransactionStatementProcessor;
+import com.rabobank.statementprocessor.exceptions.CSVParseException;
 import com.rabobank.statementprocessor.exceptions.DocumentTypeNotSupportedException;
 import com.rabobank.statementprocessor.exceptions.XMLParseException;
 import com.rabobank.statementprocessor.models.Transaction;
@@ -17,7 +18,6 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.mock.web.MockMultipartFile;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -77,18 +77,15 @@ public class GenericTransactionStatementProcessorTest {
         genericTransactionStatementProcessor.process(mockMultipartFile);
     }
 
-    @Test
-    public void csv_file_with_invalid_data_should_return_empty_list() {
-        //open csv handles failure gracefully
-        //exceptions are not thrown in case of invalid data
+    @Test(expected = CSVParseException.class)
+    public void csv_file_with_invalid_data_should_throw_exception() {
+
         MockMultipartFile mockMultipartFile =
-                new MockMultipartFile("file", "test.csv", "csv", "**INVALID**".getBytes());
+                new MockMultipartFile("file", "test.csv", "csv", "invalid_csv".getBytes());
 
         Mockito.when(csvStatementProcessor.process(mockMultipartFile))
-                .thenReturn(Collections.emptyList());
-        List<Transaction> transactions = genericTransactionStatementProcessor.process(mockMultipartFile);
-
-        assertTrue("should return empty list", transactions.size() == 0);
+                .thenThrow(new CSVParseException("file processing failed", new NumberFormatException(), "test.csv"));
+        genericTransactionStatementProcessor.process(mockMultipartFile);
     }
 
     @Test(expected = DocumentTypeNotSupportedException.class)

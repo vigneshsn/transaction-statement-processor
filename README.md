@@ -1,5 +1,5 @@
 ##Introduction
-Transaction processor which takes csv and xml as input and returns duplicate and incorrect transactions.
+Transaction processor which takes csv and xml upto 5MB as input and returns duplicate and incorrect transactions.
 
 ##Project Dependencies
 * OpenCsv
