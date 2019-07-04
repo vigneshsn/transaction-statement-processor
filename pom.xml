@@ -16,7 +16,7 @@
 
 	<properties>
 		<java.version>1.8</java.version>
-		<opencsv.version>4.1</opencsv.version>
+		<opencsv.version>4.5</opencsv.version>
 		<lombok.version>1.18.4</lombok.version>
 	</properties>
 

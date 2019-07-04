@@ -12,10 +12,11 @@ import org.springframework.web.context.request.WebRequest;
 @Slf4j
 public class ApplicationExceptionHandler {
 
-    @ExceptionHandler(value = {DocumentTypeNotSupportedException.class})
-    public ResponseEntity<Error> handleUnSupportedDocumentTypeException(Exception ex, WebRequest request) {
+    @ExceptionHandler(value = {DocumentTypeNotSupportedException.class, CSVParseException.class,
+            XMLParseException.class})
+    public ResponseEntity<Error> handleBadUserInputException(Exception ex, WebRequest request) {
         Error error = new Error(ex.getMessage());
-        log.error("handleUnSupportedDocumentTypeException {}", ex.getMessage());
+        log.error("handleBadUserInputException {}", ex.getMessage());
         return ResponseEntity
                 .badRequest().body(error);
     }
