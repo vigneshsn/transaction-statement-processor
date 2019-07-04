@@ -27,19 +27,10 @@ public class CSVStatementProcessor implements TransactionStatementProcessor {
 
     @Override
     public List<Transaction> process(final MultipartFile file) {
-        return parse(file, Transaction.class);
-    }
-
-    @Override
-    public DocumentType type() {
-        return DocumentType.CSV;
-    }
-
-    private <T> List<T> parse(final MultipartFile file, Class<T> type) {
         try (InputStream fileInputStream = file.getInputStream()) {
             Reader fileReader = new InputStreamReader(fileInputStream);
             CsvToBean csvToBean = new CsvToBeanBuilder(fileReader)
-                    .withType(type)
+                    .withType(Transaction.class)
                     .withMappingStrategy(mappingStrategy)
                     .build();
             return csvToBean.parse();
@@ -48,4 +39,8 @@ public class CSVStatementProcessor implements TransactionStatementProcessor {
         }
     }
 
+    @Override
+    public DocumentType getType() {
+        return DocumentType.CSV;
+    }
 }

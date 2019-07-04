@@ -40,8 +40,8 @@ public class GenericTransactionStatementProcessorTest {
     public void setUp() {
         List<TransactionStatementProcessor> transactionStatementProcessorList =
                 Arrays.asList(xmlStatementProcessor, csvStatementProcessor);
-        when(csvStatementProcessor.type()).thenReturn(DocumentType.CSV);
-        when(xmlStatementProcessor.type()).thenReturn(DocumentType.XML);
+        when(csvStatementProcessor.getType()).thenReturn(DocumentType.CSV);
+        when(xmlStatementProcessor.getType()).thenReturn(DocumentType.XML);
         genericTransactionStatementProcessor = new GenericTransactionStatementProcessor(transactionStatementProcessorList);
     }
 

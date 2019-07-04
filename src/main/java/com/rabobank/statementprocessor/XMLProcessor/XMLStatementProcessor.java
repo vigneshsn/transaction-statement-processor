@@ -40,7 +40,7 @@ public class XMLStatementProcessor implements TransactionStatementProcessor {
     }
 
     @Override
-    public DocumentType type() {
+    public DocumentType getType() {
         return DocumentType.XML;
     }
 }

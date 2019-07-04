@@ -20,7 +20,7 @@ public class GenericTransactionStatementProcessor {
 
     public GenericTransactionStatementProcessor(final List<TransactionStatementProcessor> statementProcessors) {
         transactionStatementProcessorMap = statementProcessors.stream()
-                .collect(Collectors.toMap(TransactionStatementProcessor::type, processor -> processor));
+                .collect(Collectors.toMap(TransactionStatementProcessor::getType, processor -> processor));
     }
 
     private Optional<TransactionStatementProcessor> getTransactionStatementProcessorByFileType(final String requestFileType) {
@@ -34,15 +34,13 @@ public class GenericTransactionStatementProcessor {
     }
 
     public List<Transaction> process(final MultipartFile file) {
-        Optional<TransactionStatementProcessor> transactionStatementProcessor =
-                DocumentHelper.getFileExtensionFromFileName(file.getOriginalFilename())
-                        .map(fileType -> getTransactionStatementProcessorByFileType(fileType))
-                        .orElseThrow(() -> new DocumentTypeNotSupportedException("File name is not correct", ""));
+        return DocumentHelper.getFileExtensionFromFileName(file.getOriginalFilename())
+                .map(fileType -> getTransactionStatementProcessorByFileType(fileType))
+                .orElseThrow(() ->
+                        new DocumentTypeNotSupportedException("The requested file type not supported", ""))
+                .map(fileProcessor -> fileProcessor.process(file))
+                .orElseThrow(() ->
+                        new RuntimeException("Document processor not available for requested file getType"));
 
-        if (transactionStatementProcessor.isPresent()) {
-            return transactionStatementProcessor.get().process(file);
-        }
-
-        throw new RuntimeException("Document processor not available for requested file type");
     }
 }
