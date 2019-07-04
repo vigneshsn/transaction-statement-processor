@@ -2,8 +2,8 @@ package com.rabobank.statementprocessor.controller;
 
 import com.rabobank.statementprocessor.models.Transaction;
 import com.rabobank.statementprocessor.models.TransactionStatementResult;
-import com.rabobank.statementprocessor.util.TransactionValidationHelper;
 import com.rabobank.statementprocessor.service.GenericTransactionStatementProcessor;
+import com.rabobank.statementprocessor.util.TransactionValidationHelper;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;

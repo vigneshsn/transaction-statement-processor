@@ -17,7 +17,7 @@ public class XMLStatementProcessorTest {
     private XMLStatementProcessor xmlStatementProcessor;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         xmlStatementProcessor = new XMLStatementProcessor();
     }
 
@@ -27,7 +27,7 @@ public class XMLStatementProcessorTest {
         MockMultipartFile mockMultipartFile =
                 new MockMultipartFile("file", "test.csv", "csv", fileContent);
         List<Transaction> transactions = xmlStatementProcessor.process(mockMultipartFile);
-        assertTrue("should contain transactions" , transactions.size() > 0);
+        assertTrue("should contain transactions", transactions.size() > 0);
     }
 
     @Test(expected = XMLParseException.class)

@@ -2,11 +2,11 @@ package com.rabobank.statementprocessor.service;
 
 import com.rabobank.statementprocessor.CSVProcessor.CSVStatementProcessor;
 import com.rabobank.statementprocessor.TestHelper;
+import com.rabobank.statementprocessor.XMLProcessor.XMLStatementProcessor;
 import com.rabobank.statementprocessor.api.TransactionStatementProcessor;
+import com.rabobank.statementprocessor.exceptions.DocumentTypeNotSupportedException;
 import com.rabobank.statementprocessor.exceptions.XMLParseException;
 import com.rabobank.statementprocessor.models.Transaction;
-import com.rabobank.statementprocessor.XMLProcessor.XMLStatementProcessor;
-import com.rabobank.statementprocessor.exceptions.DocumentTypeNotSupportedException;
 import com.rabobank.statementprocessor.util.DocumentType;
 import org.junit.Before;
 import org.junit.Test;
@@ -88,7 +88,7 @@ public class GenericTransactionStatementProcessorTest {
                 .thenReturn(Collections.emptyList());
         List<Transaction> transactions = genericTransactionStatementProcessor.process(mockMultipartFile);
 
-        assertTrue("should return empty list",transactions.size() == 0 );
+        assertTrue("should return empty list", transactions.size() == 0);
     }
 
     @Test(expected = DocumentTypeNotSupportedException.class)

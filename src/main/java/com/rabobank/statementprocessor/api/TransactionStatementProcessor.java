@@ -8,5 +8,6 @@ import java.util.List;
 
 public interface TransactionStatementProcessor {
     List<Transaction> process(final MultipartFile file);
+
     DocumentType type();
 }

@@ -19,6 +19,7 @@ import java.util.List;
 public class CSVStatementProcessor implements TransactionStatementProcessor {
 
     private static HeaderColumnNameMappingStrategy mappingStrategy;
+
     static {
         mappingStrategy = new HeaderColumnNameMappingStrategy();
         mappingStrategy.setType(Transaction.class);

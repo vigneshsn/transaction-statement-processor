@@ -1,9 +1,11 @@
+##Introduction
+Transaction processor which takes csv and xml as input and returns duplicate and incorrect transactions.
 
-Introduction
-Transaction processor which takes csv and xml as input and returns duplicate and incorrect balances.
+##Project Dependencies
+* OpenCsv
+* lombok
+* JAXB
+* Swagger2
 
-Dependencies
-OpenCsv
-lombok
-JAXB
-
+##API Documentation
+http://localhost:8080/swagger-ui.html
