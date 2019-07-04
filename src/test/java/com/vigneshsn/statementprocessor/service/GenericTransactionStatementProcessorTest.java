@@ -25,7 +25,7 @@ public class GenericTransactionStatementProcessorTest {
     private GenericTransactionStatementProcessor genericTransactionStatementProcessor;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         List<TransactionStatementProcessor> transactionStatementProcessorList =
                 Arrays.asList(new CSVStatementProcessor(), new XMLStatementProcessor());
         genericTransactionStatementProcessor = new GenericTransactionStatementProcessor(transactionStatementProcessorList);
@@ -36,9 +36,9 @@ public class GenericTransactionStatementProcessorTest {
         byte[] transactionDataBytes = TestUtils.readFileASBytes("records.csv");
         MockMultipartFile mockMultipartFile =
                 new MockMultipartFile("file", "test.csv", "csv", transactionDataBytes);
-        List<Transaction> result  = genericTransactionStatementProcessor.process(mockMultipartFile);
+        List<Transaction> result = genericTransactionStatementProcessor.process(mockMultipartFile);
         assertTrue("list should contain value", result.size() > 0);
-        assertEquals("147534" , result.get(0).getId());
+        assertEquals("147534", result.get(0).getId());
     }
 
     @Test
@@ -46,9 +46,9 @@ public class GenericTransactionStatementProcessorTest {
         byte[] transactionDataBytes = TestUtils.readFileASBytes("records.xml");
         MockMultipartFile mockMultipartFile =
                 new MockMultipartFile("file", "test.xml", "xml", transactionDataBytes);
-        List<Transaction> result  = genericTransactionStatementProcessor.process(mockMultipartFile);
+        List<Transaction> result = genericTransactionStatementProcessor.process(mockMultipartFile);
         assertTrue("list should contain value", result.size() > 0);
-        assertEquals("171149" , result.get(0).getId());
+        assertEquals("171149", result.get(0).getId());
     }
 
     @Test(expected = XMLParseException.class)
@@ -64,7 +64,7 @@ public class GenericTransactionStatementProcessorTest {
         //exceptions are not thrown in case of invalid data
         MockMultipartFile mockMultipartFile =
                 new MockMultipartFile("file", "test.csv", "csv", "**INVALID**".getBytes());
-        List<Transaction> result  = genericTransactionStatementProcessor.process(mockMultipartFile);
+        List<Transaction> result = genericTransactionStatementProcessor.process(mockMultipartFile);
         assertTrue("Transaction list should be empty", result.size() == 0);
     }
 

@@ -19,6 +19,7 @@ public class XMLStatementProcessor implements TransactionStatementProcessor {
 
     private static JAXBContext jaxbContext;
     private static Unmarshaller unMarshaller;
+
     static {
         try {
             jaxbContext = JAXBContext.newInstance(Transactions.class);
@@ -30,7 +31,7 @@ public class XMLStatementProcessor implements TransactionStatementProcessor {
 
     @Override
     public List<Transaction> process(MultipartFile file) {
-        try ( InputStream inputStream = file.getInputStream() ){
+        try (InputStream inputStream = file.getInputStream()) {
             Transactions transactions = (Transactions) unMarshaller.unmarshal(inputStream);
             return transactions.getTransactions();
         } catch (Exception ex) {

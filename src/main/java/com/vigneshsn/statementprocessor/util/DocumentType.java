@@ -3,9 +3,10 @@ package com.vigneshsn.statementprocessor.util;
 import java.util.Arrays;
 
 public enum DocumentType {
-    CSV("CSV"),XML("XML"), UNKNOWN("UNKNOWN");
+    CSV("CSV"), XML("XML"), UNKNOWN("UNKNOWN");
 
     private String type;
+
     DocumentType(String type) {
         this.type = type;
     }

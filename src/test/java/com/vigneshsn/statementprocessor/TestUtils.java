@@ -6,7 +6,7 @@ import java.nio.file.Paths;
 
 public class TestUtils {
 
-    public static byte[] readFileASBytes(final String fileName)  {
+    public static byte[] readFileASBytes(final String fileName) {
 
         try {
             Path path = Paths.get(TestUtils.class.getClassLoader()
