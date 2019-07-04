@@ -8,11 +8,11 @@
 		<version>2.1.6.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.vigneshsn</groupId>
+	<groupId>com.rabobank</groupId>
 	<artifactId>statement-processor</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>statement-processor</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Rest application for processing transaction</description>
 
 	<properties>
 		<java.version>1.8</java.version>
