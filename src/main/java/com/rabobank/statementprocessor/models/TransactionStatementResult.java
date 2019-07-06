@@ -13,5 +13,5 @@ import java.util.List;
 public class TransactionStatementResult implements Serializable {
 
     private List<Transaction> duplicates;
-    private List<Transaction> incorrectBalance;
+    private List<Transaction> incorrectBalances;
 }

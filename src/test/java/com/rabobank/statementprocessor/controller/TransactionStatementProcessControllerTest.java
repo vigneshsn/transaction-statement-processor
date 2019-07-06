@@ -68,10 +68,10 @@ public class TransactionStatementProcessControllerTest {
         assertTrue("should have duplicate transactions",
                 transactionStatementResult.getDuplicates().size() > 0);
         assertTrue("should have incorrect transactions",
-                transactionStatementResult.getIncorrectBalance().size() > 0);
+                transactionStatementResult.getIncorrectBalances().size() > 0);
 
         assertEquals("171149", transactionStatementResult.getDuplicates().get(0).getId());
-        assertEquals("158536", transactionStatementResult.getIncorrectBalance().get(0).getId());
+        assertEquals("158536", transactionStatementResult.getIncorrectBalances().get(0).getId());
     }
 
 
